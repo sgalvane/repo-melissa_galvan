@@ -23,10 +23,11 @@ public class CalculadoraImpl implements ICalculadora {
     @Value("${calculadora.mensaje.multiplicacion}")
     String mensajeMultiplicacion;
 
+    @Value("${calculadora.mensaje.division}")
+    String mensajeDivision;
 
 
     public ResponseEntity getSuma(String numero1, String numero2){
-
         int num1 = Integer.parseInt(numero1);
         int num2 = Integer.parseInt(numero2);
         int resultado= num1 + num2;
@@ -34,7 +35,6 @@ public class CalculadoraImpl implements ICalculadora {
     }
 
     public ResponseEntity getResta(String numero1, String numero2){
-
         int num1 = Integer.parseInt(numero1);
         int num2 = Integer.parseInt(numero2);
         int resultado = num1 - num2;
@@ -42,17 +42,14 @@ public class CalculadoraImpl implements ICalculadora {
     }
 
     public ResponseEntity getMultiplicacion(String numero1, String numero2){
-
         int num1 = Integer.parseInt(numero1);
         int num2 = Integer.parseInt(numero2);
         int resultado = num1 * num2;
         return ResponseEntity.ok(resultado + " " + mensajeMultiplicacion);
     }
 
-    @Value("${calculadora.mensaje.division}")
-    String mensajeDivision;
-    public ResponseEntity getDivision(String numero1, String numero2){
 
+    public ResponseEntity getDivision(String numero1, String numero2){
         double num1 = Double.parseDouble(numero1);
         double num2 = Double.parseDouble(numero2);
         double resultado = num1 / num2;

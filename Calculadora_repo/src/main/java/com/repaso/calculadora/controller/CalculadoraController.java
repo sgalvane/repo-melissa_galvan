@@ -8,8 +8,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.websocket.server.PathParam;
 
-@RequestMapping("/calculadora")
+
 @RestController
+@RequestMapping("/calculadora")
 public class CalculadoraController {
 
     private final ICalculadora iCalculadora;

@@ -5,9 +5,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
-public interface CitasRepository  extends JpaRepository<CitasEntity,Long>{
+public interface CitasRepository  extends JpaRepository<CitasEntity,Long> {
 
-    //1
+
     @Query(value = "SELECT c.* FROM citas c WHERE c.medico = :medico", nativeQuery = true)
     List<CitasEntity> buscarPorMedico(String medico);
 
@@ -16,7 +16,7 @@ public interface CitasRepository  extends JpaRepository<CitasEntity,Long>{
 
     List<CitasEntity> findByMedico(String medico);
 
-    //2
+
     @Query(value = "SELECT p.* FROM citas p WHERE p.idPaciente = :idPaciente", nativeQuery = true)
     List<CitasEntity> buscarPorIdPaciente(Integer idPaciente);
 
@@ -25,7 +25,7 @@ public interface CitasRepository  extends JpaRepository<CitasEntity,Long>{
 
     List<CitasEntity> findByIdPaciente(Integer idPaciente);
 
-    //3
+
 
     @Query(value = "SELECT e.* FROM citas e WHERE e.eps = :eps", nativeQuery = true)
     List<CitasEntity> buscarPorEps(String eps);

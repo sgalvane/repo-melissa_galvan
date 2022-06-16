@@ -25,7 +25,6 @@ public class CitasController {
         return iCitasService.crearCita(citasEntity);
     }
 
-    //1
      @GetMapping("/medico/native-query")
     public ResponseEntity getMedicoQuery(@PathParam("medico")String medico){
         return iCitasService.getMedicoQuery(medico);
@@ -41,7 +40,6 @@ public class CitasController {
         return iCitasService.getMedicoJpaRepository(medico);
      }
 
-     //2
 
     @GetMapping("/id-paciente/query")
     public ResponseEntity getIdPacienteNativeQuery(@PathParam("idPaciente")Integer idPaciente){
@@ -58,7 +56,6 @@ public class CitasController {
         return iCitasService.getIdPacienteJpaRepository(idPaciente);
     }
 
-    //3
     @GetMapping("/eps/query")
     public ResponseEntity getEpsNativeQuery(@PathParam("eps")String eps){
         return iCitasService.getEpsQuery(eps);
@@ -78,5 +75,16 @@ public class CitasController {
     public ResponseEntity putCita(@PathVariable Long id, @RequestBody CitasDTO citasDTO){
         return iCitasService.actualizarCita(id, citasDTO);
      }
+
+     @DeleteMapping("/delete/{id}")
+    public ResponseEntity deleteHard(@PathVariable Long id){
+        return iCitasService.deleteHard(id);
+     }
+
+     @DeleteMapping("/logic/{id}")
+    public ResponseEntity deleteLogic(@PathVariable Long id){
+        return iCitasService.deleteLogic(id);
+     }
+
 
 }

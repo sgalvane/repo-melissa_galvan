@@ -23,4 +23,9 @@ public interface ICitasService {
 
     ResponseEntity actualizarCita(Long id, CitasDTO citasDTO);
 
+
+    ResponseEntity deleteHard(Long id);
+
+    ResponseEntity deleteLogic(Long id);
+
 }

@@ -1,9 +1,6 @@
 package com.ejemplo.basededatos.model;
-
-
 import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.Date;
 
 
@@ -11,14 +8,15 @@ import java.util.Date;
 @Table(name = "citas")
 public class CitasEntity implements Serializable {
 
-
     @Id
     @Column(name = "id_cita")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private Integer idPaciente;
+
     private String medico;
+
     private String eps;
 
     @Column(name = "fecha_cita")

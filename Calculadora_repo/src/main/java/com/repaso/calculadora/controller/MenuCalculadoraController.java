@@ -6,15 +6,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RequestMapping("/calculadora")
+
 @RestController
+@RequestMapping("/calculadora")
 public class MenuCalculadoraController {
 
-    IMenuCalculadora intMenuCalculadora;
+    IMenuCalculadora iMenuCalculadora;
+
+    public MenuCalculadoraController(IMenuCalculadora iMenuCalculadora) {
+        this.iMenuCalculadora = iMenuCalculadora;
+    }
 
     @GetMapping("/menu")
-
     public ResponseEntity getMenu(){
-        return intMenuCalculadora.getMenu();
+        return iMenuCalculadora.getMenu();
     }
 }

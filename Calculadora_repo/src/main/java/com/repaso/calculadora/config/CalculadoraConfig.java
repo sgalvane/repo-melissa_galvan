@@ -1,11 +1,11 @@
 package com.repaso.calculadora.config;
 
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
 import java.util.Map;
 
-@RestController
-@RequestMapping("/calculadora")
+@Component
+@ConfigurationProperties(prefix = "calculadora")
 public class CalculadoraConfig {
 
     public static final String SUMA = "suma";

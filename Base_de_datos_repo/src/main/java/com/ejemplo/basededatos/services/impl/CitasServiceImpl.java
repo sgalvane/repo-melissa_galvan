@@ -78,20 +78,39 @@ public class CitasServiceImpl implements ICitasService {
 
         String validar;
         var citaOptional = citasRepository.findById(id);
-        if (citaOptional.isPresent()){
-
-        CitasEntity citasEntity = citaOptional.get();
-        citasEntity.setMedico(citasDTO.getMedico());
-        citasEntity.setEps(citasDTO.getEps());
-        citasRepository.save(citasEntity);
-        return ResponseEntity.ok(AppConstants.ACTUALIZACION_EXITOSA);
-
-    }else {
-           validar = "No existe registro";
-           return ResponseEntity.ok(validar);
+        if (citaOptional.isPresent()) {
+            CitasEntity citasEntity = citaOptional.get();
+            citasEntity.setMedico(citasDTO.getMedico());
+            citasEntity.setEps(citasDTO.getEps());
+            citasRepository.save(citasEntity);
+            validar = AppConstants.ACTUALIZACION_EXITOSA;
+        }else {
+           validar = AppConstants.NO_EXISTE;
+        }return ResponseEntity.ok(validar);
 
     }
+
+    @Override
+    public ResponseEntity deleteHard(Long id) {
+        String validar;
+        var citaOption = citasRepository.findById(id);
+        if (citaOption.isPresent()) {
+            citasRepository.delete(citaOption.get());
+            validar = AppConstants.ELIMINACION_EXITOSA;
+        }else {
+            validar = AppConstants.ELIMINADO;
+        }return ResponseEntity.ok(validar);
+
     }
 
+    @Override
+    public ResponseEntity deleteLogic(Long id) {
+        String validar;
+        validar = AppConstants.ELIMINACION_EXITOSA;
+        var cita = citasRepository.findById(id).get();
+        cita.setFechaEliminacion(new Date());
+        citasRepository.save(cita);
+        return ResponseEntity.ok(validar);
+    }
 
 }
