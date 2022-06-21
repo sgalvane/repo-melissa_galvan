@@ -1,5 +1,6 @@
 package com.ejemplo.basededatos.controller;
 
+import com.ejemplo.basededatos.controller.docs.CitasDocs;
 import com.ejemplo.basededatos.dto.CitasDTO;
 import com.ejemplo.basededatos.services.ICitasService;
 import org.springframework.http.ResponseEntity;
@@ -8,8 +9,8 @@ import javax.websocket.server.PathParam;
 
 
 @RestController
-@RequestMapping("/citas")
-public class CitasController {
+@RequestMapping("/api/citas")
+public class CitasController implements CitasDocs {
 
     private ICitasService iCitasService;
 
@@ -18,18 +19,18 @@ public class CitasController {
     }
 
      @GetMapping("/medico/native-query")
-    public ResponseEntity getMedicoQuery(@PathParam("medico")String medico){
-        return iCitasService.getMedicoQuery(medico);
+    public ResponseEntity getMedicoQuery(String nombreMedico){
+        return iCitasService.getMedicoQuery(nombreMedico);
      }
 
      @GetMapping("/medico/jpql")
-    public ResponseEntity getMedicoJPQL(@PathParam("medico")String medico){
-        return iCitasService.getMedicoJPQL(medico);
+    public ResponseEntity getMedicoJPQL(@PathParam("nombreMedico")String nombreMedico){
+        return iCitasService.getMedicoJPQL(nombreMedico);
      }
 
      @GetMapping("/medico/jpa")
-    public ResponseEntity getMedicoJpaRepository(@PathParam("medico") String medico){
-        return iCitasService.getMedicoJpaRepository(medico);
+    public ResponseEntity getMedicoJpaRepository(String nombreMedico){
+        return iCitasService.getMedicoJpaRepository(nombreMedico);
      }
 
 
@@ -44,12 +45,12 @@ public class CitasController {
     }
 
     @GetMapping("/id-paciente/jpa")
-    public ResponseEntity getIdPacienteJPA(@PathParam("idPaciente")Integer idPaciente){
+    public ResponseEntity getIdPacienteJPA(Integer idPaciente){
         return iCitasService.getIdPacienteJpaRepository(idPaciente);
     }
 
     @GetMapping("/eps/query")
-    public ResponseEntity getEpsNativeQuery(@PathParam("eps")String eps){
+    public ResponseEntity getEpsNativeQuery(String eps){
         return iCitasService.getEpsQuery(eps);
     }
 
@@ -59,22 +60,22 @@ public class CitasController {
     }
 
     @GetMapping("/eps/jpa")
-    public ResponseEntity getEpsJPA(@PathParam("eps")String eps){
+    public ResponseEntity getEpsJPA(String eps){
         return iCitasService.getEpsJpaRepository(eps);
     }
 
      @PutMapping("/{id}")
-    public ResponseEntity putCita(@PathVariable Long id, @RequestBody CitasDTO citasDTO){
+    public ResponseEntity putCita(Long id, @RequestBody CitasDTO citasDTO){
         return iCitasService.actualizarCita(id, citasDTO);
      }
 
      @DeleteMapping("/delete/{id}")
-    public ResponseEntity deleteHard(@PathVariable Long id){
+    public ResponseEntity deleteHard(Long id){
         return iCitasService.deleteHard(id);
      }
 
      @DeleteMapping("/logic/{id}")
-    public ResponseEntity deleteLogic(@PathVariable Long id){
+    public ResponseEntity deleteLogic(Long id){
         return iCitasService.deleteLogic(id);
      }
 
