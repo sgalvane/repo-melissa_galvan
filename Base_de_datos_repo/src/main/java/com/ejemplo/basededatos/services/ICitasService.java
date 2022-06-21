@@ -1,13 +1,10 @@
 package com.ejemplo.basededatos.services;
 import com.ejemplo.basededatos.dto.CitasDTO;
-import com.ejemplo.basededatos.model.CitasEntity;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Date;
 
 public interface ICitasService {
-
-    ResponseEntity crearCita(CitasEntity citasEntity);
 
     ResponseEntity getMedicoQuery(String medico);
     ResponseEntity getMedicoJPQL(String medico);
@@ -27,5 +24,8 @@ public interface ICitasService {
     ResponseEntity deleteHard(Long id);
 
     ResponseEntity deleteLogic(Long id);
+
+    ResponseEntity saveCita(CitasDTO citasDTO);
+
 
 }

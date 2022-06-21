@@ -1,14 +1,11 @@
 package com.ejemplo.basededatos.controller;
 
-
 import com.ejemplo.basededatos.dto.CitasDTO;
-import com.ejemplo.basededatos.model.CitasEntity;
 import com.ejemplo.basededatos.services.ICitasService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.websocket.server.PathParam;
-import java.util.Date;
+
 
 @RestController
 @RequestMapping("/citas")
@@ -18,11 +15,6 @@ public class CitasController {
 
     public CitasController(ICitasService iCitasService) {
         this.iCitasService = iCitasService;
-    }
-
-    @PostMapping
-    public ResponseEntity crearCita(@RequestBody CitasEntity citasEntity) {
-        return iCitasService.crearCita(citasEntity);
     }
 
      @GetMapping("/medico/native-query")
@@ -86,5 +78,9 @@ public class CitasController {
         return iCitasService.deleteLogic(id);
      }
 
+     @PostMapping
+    public ResponseEntity saveCita(@RequestBody CitasDTO citasDTO){
+        return iCitasService.saveCita(citasDTO);
+     }
 
 }

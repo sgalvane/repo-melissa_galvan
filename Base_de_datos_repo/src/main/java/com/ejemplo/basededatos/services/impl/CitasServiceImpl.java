@@ -19,12 +19,6 @@ public class CitasServiceImpl implements ICitasService {
         this.citasRepository = citasRepository;
     }
 
-    public ResponseEntity crearCita(CitasEntity citasEntity) {
-        citasEntity.setFechaCita(new Date());
-        citasEntity.setFechaCreacion(new Date());
-        CitasEntity citas = citasRepository.save(citasEntity);
-        return ResponseEntity.ok(citas);
-    }
 
     @Override
     public ResponseEntity getMedicoQuery(String medico) {
@@ -75,14 +69,15 @@ public class CitasServiceImpl implements ICitasService {
 
     @Override
     public ResponseEntity actualizarCita(Long id, CitasDTO citasDTO) {
-
         String validar;
         var citaOptional = citasRepository.findById(id);
         if (citaOptional.isPresent()) {
-            CitasEntity citasEntity = citaOptional.get();
-            citasEntity.setMedico(citasDTO.getMedico());
-            citasEntity.setEps(citasDTO.getEps());
-            citasRepository.save(citasEntity);
+            var cita =CitasEntity
+                    .builder()
+                    .medico(citasDTO.getMedico())
+                    .eps(citasDTO.getEps())
+                    .build();
+            var citaActualizar=citasRepository.save(cita);
             validar = AppConstants.ACTUALIZACION_EXITOSA;
         }else {
            validar = AppConstants.NO_EXISTE;
@@ -111,6 +106,19 @@ public class CitasServiceImpl implements ICitasService {
         cita.setFechaEliminacion(new Date());
         citasRepository.save(cita);
         return ResponseEntity.ok(validar);
+    }
+
+    @Override
+    public ResponseEntity saveCita(CitasDTO citasDTO) {
+       var cita = CitasEntity
+               .builder()
+               .idPaciente(citasDTO.getIdPaciente())
+               .eps(citasDTO.getEps())
+               .medico(citasDTO.getMedico())
+               .build();
+       var citaNueva=citasRepository.save(cita);
+
+       return ResponseEntity.ok(citaNueva);
     }
 
 }
