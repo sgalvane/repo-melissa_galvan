@@ -9,7 +9,7 @@ import javax.websocket.server.PathParam;
 
 
 @RestController
-@RequestMapping("/api/citas")
+@RequestMapping("/api/citas/")
 public class CitasController implements CitasDocs {
 
     private ICitasService iCitasService;
@@ -65,7 +65,7 @@ public class CitasController implements CitasDocs {
     }
 
      @PutMapping("/{id}")
-    public ResponseEntity putCita(Long id, @RequestBody CitasDTO citasDTO){
+    public ResponseEntity updateCita(Long id, @RequestBody CitasDTO citasDTO){
         return iCitasService.actualizarCita(id, citasDTO);
      }
 

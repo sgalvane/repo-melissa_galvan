@@ -18,7 +18,7 @@ public interface CitasDocs {
 
     @Operation(summary = "Servicio para busqueda por nombre del medico")
     @ApiResponses(
-            value =  {
+            value = {
                     @ApiResponse(
                             responseCode = "200",
                             description = "retorna las citas de determinado medico",
@@ -33,9 +33,26 @@ public interface CitasDocs {
     ResponseEntity getMedicoJpaRepository(@PathParam("nombreMedico") String nombreMedico);
 
 
+    @Operation(summary = "Servicio para busqueda por nombre del medico")
+    @ApiResponses(
+            value = {
+                    @ApiResponse(
+                            responseCode = "200",
+                            description = "retorna las citas de determinado medico",
+                            content = {
+                                    @Content(
+                                            mediaType = MediaType.APPLICATION_JSON_VALUE
+                                    )
+                            }
+                    )
+            }
+    )
+    ResponseEntity getMedicoQuery(String nombreMedico);
+
+
     @Operation(summary = "Servicio para busqueda por Id del paciente")
     @ApiResponses(
-            value =  {
+            value = {
                     @ApiResponse(
                             responseCode = "200",
                             description = "retorna las citas segun Id de paciente",
@@ -47,13 +64,12 @@ public interface CitasDocs {
                     )
             }
     )
-    ResponseEntity getIdPacienteJPA(@PathParam("idPaciente")Integer idPaciente);
-
+    ResponseEntity getIdPacienteJPA(@PathParam("idPaciente") Integer idPaciente);
 
 
     @Operation(summary = "Servicio para busqueda por nombre de EPS")
     @ApiResponses(
-            value =  {
+            value = {
                     @ApiResponse(
                             responseCode = "200",
                             description = "retorna las citas segun la EPS",
@@ -65,13 +81,12 @@ public interface CitasDocs {
                     )
             }
     )
-    ResponseEntity getEpsJPA(@PathParam("eps")String eps);
-
+    ResponseEntity getEpsJPA(@PathParam("eps") String eps);
 
 
     @Operation(summary = "Servicio para actualizar cita")
     @ApiResponses(
-            value =  {
+            value = {
                     @ApiResponse(
                             responseCode = "200",
                             description = "actualiza los datos ingresados",
@@ -83,13 +98,12 @@ public interface CitasDocs {
                     )
             }
     )
-    ResponseEntity putCita(@PathVariable Long id, @RequestBody CitasDTO citasDTO);
-
+    ResponseEntity updateCita(@PathVariable Long id, @RequestBody CitasDTO citasDTO);
 
 
     @Operation(summary = "Servicio para eliminar cita")
     @ApiResponses(
-            value =  {
+            value = {
                     @ApiResponse(
                             responseCode = "200",
                             description = "elimina los datos",
@@ -106,7 +120,7 @@ public interface CitasDocs {
 
     @Operation(summary = "Servicio para eliminar cita con registro de fecha")
     @ApiResponses(
-            value =  {
+            value = {
                     @ApiResponse(
                             responseCode = "200",
                             description = "elimina los datos y registra la fecha de eliminacion",
@@ -121,10 +135,9 @@ public interface CitasDocs {
     ResponseEntity deleteLogic(@PathVariable Long id);
 
 
-
     @Operation(summary = "Servicio para guardar datos de cita")
     @ApiResponses(
-            value =  {
+            value = {
                     @ApiResponse(
                             responseCode = "200",
                             description = "guarda los datos de la cita",
@@ -137,4 +150,5 @@ public interface CitasDocs {
             }
     )
     ResponseEntity saveCita(@RequestBody CitasDTO citasDTO);
+
 }

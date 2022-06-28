@@ -2,7 +2,6 @@ package com.ejemplo.basededatos.services;
 import com.ejemplo.basededatos.dto.CitasDTO;
 import org.springframework.http.ResponseEntity;
 
-
 public interface ICitasService {
 
     ResponseEntity getMedicoQuery(String medico);

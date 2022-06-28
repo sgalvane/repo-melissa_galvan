@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class CitasDTO {
 
+    private Long id;
+
     private String medico;
 
     private String eps;

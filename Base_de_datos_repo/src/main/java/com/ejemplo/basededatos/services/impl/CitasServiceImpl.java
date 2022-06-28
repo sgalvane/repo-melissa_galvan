@@ -7,11 +7,11 @@ import com.ejemplo.basededatos.repository.CitasRepository;
 import com.ejemplo.basededatos.services.ICitasService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-
 import java.util.Date;
 
 @Service
 public class CitasServiceImpl implements ICitasService {
+
 
     private CitasRepository citasRepository;
 
@@ -35,7 +35,6 @@ public class CitasServiceImpl implements ICitasService {
         return ResponseEntity.ok(citasRepository.findByMedico(medico));
     }
 
-
     @Override
     public ResponseEntity getIdPacienteQuery(Integer idPaciente) {
         return ResponseEntity.ok(citasRepository.buscarPorIdPaciente(idPaciente));
@@ -50,7 +49,6 @@ public class CitasServiceImpl implements ICitasService {
     public ResponseEntity getIdPacienteJpaRepository(Integer idPaciente) {
         return ResponseEntity.ok(citasRepository.findByIdPaciente(idPaciente));
     }
-
 
     @Override
     public ResponseEntity getEpsQuery(String eps) {
@@ -72,17 +70,17 @@ public class CitasServiceImpl implements ICitasService {
         String validar;
         var citaOptional = citasRepository.findById(id);
         if (citaOptional.isPresent()) {
-            var cita =CitasEntity
+            var cita = CitasEntity
                     .builder()
                     .medico(citasDTO.getMedico())
                     .eps(citasDTO.getEps())
                     .build();
-            var citaActualizar=citasRepository.save(cita);
+            var citaActualizar = citasRepository.save(cita);
             validar = AppConstants.ACTUALIZACION_EXITOSA;
-        }else {
-           validar = AppConstants.NO_EXISTE;
-        }return ResponseEntity.ok(validar);
-
+        } else {
+            validar = AppConstants.NO_EXISTE;
+        }
+        return ResponseEntity.ok(validar);
     }
 
     @Override
@@ -92,11 +90,12 @@ public class CitasServiceImpl implements ICitasService {
         if (citaOption.isPresent()) {
             citasRepository.delete(citaOption.get());
             validar = AppConstants.ELIMINACION_EXITOSA;
-        }else {
+        } else {
             validar = AppConstants.ELIMINADO;
-        }return ResponseEntity.ok(validar);
-
+        }
+        return ResponseEntity.ok(validar);
     }
+
 
     @Override
     public ResponseEntity deleteLogic(Long id) {
@@ -110,15 +109,15 @@ public class CitasServiceImpl implements ICitasService {
 
     @Override
     public ResponseEntity saveCita(CitasDTO citasDTO) {
-       var cita = CitasEntity
-               .builder()
-               .idPaciente(citasDTO.getIdPaciente())
-               .eps(citasDTO.getEps())
-               .medico(citasDTO.getMedico())
-               .build();
-       var citaNueva=citasRepository.save(cita);
+        var cita = CitasEntity
+                .builder()
+                .idPaciente(citasDTO.getIdPaciente())
+                .eps(citasDTO.getEps())
+                .medico(citasDTO.getMedico())
+                .build();
+        var citaNueva = citasRepository.save(cita);
 
-       return ResponseEntity.ok(citaNueva);
+        return ResponseEntity.ok(citaNueva);
     }
 
 }

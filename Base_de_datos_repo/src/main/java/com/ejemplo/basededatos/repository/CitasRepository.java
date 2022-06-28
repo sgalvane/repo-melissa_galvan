@@ -26,7 +26,6 @@ public interface CitasRepository  extends JpaRepository<CitasEntity,Long> {
     List<CitasEntity> findByIdPaciente(Integer idPaciente);
 
 
-
     @Query(value = "SELECT e.* FROM citas e WHERE e.eps = :eps", nativeQuery = true)
     List<CitasEntity> buscarPorEps(String eps);
 
@@ -34,5 +33,6 @@ public interface CitasRepository  extends JpaRepository<CitasEntity,Long> {
     List<CitasEntity> buscarPorEpsJPQL(String eps);
 
     List<CitasEntity> findByEps(String eps);
+
 
 }
